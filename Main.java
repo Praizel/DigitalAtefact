@@ -43,12 +43,12 @@ public class Main {
             if(seats != null){
                 if(seats > 0){
                     // there are available seats
-                    System.out.println("There are available " + seats + "seats to be booked ");
+                    System.out.println("There are " + seats + " seats available to be booked ");
                     // ask user to confirm and update hashmap
                     System.out.println("Do you want to go ahead and book seats Yes/No ");
                     String answer = scanner.nextLine().trim().toLowerCase();
                     if(answer.equals("yes")){
-                        BookedFlight f = new BookedFlight(country, day);
+                        BookedFlight f = new BookedFlight(country, day, flight.getAirline());
                         user.addBookedFlight(f);
                         availability.put(day, seats-1);
                     }
@@ -77,7 +77,7 @@ public class Main {
             BookedFlight bookedflight = bookedFlights.get(i);
             String country = bookedflight.getCountry();
             String day = bookedflight.getDay();
-            System.out.println("Booked " + "country: " + country + " day: " + day );
+            System.out.println("Booked " + "country: " + country +  "," + " Day: " + day + "," +  " Airline: " + bookedflight.getAirline());
 
         }
 
@@ -182,22 +182,22 @@ public class Main {
         destinationList.add(
                 new Destination(
                         "America",
-                        new Flight(new HashMap<>(Map.of("monday", 127, "wednesday", 150)), "078")));
+                        new Flight(new HashMap<>(Map.of("monday", 127, "wednesday", 150)), "078", "British Airline")));
 
         destinationList.add(
                 new Destination(
                         "France",
-                        new Flight(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "078")));
+                        new Flight(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "078", "France Air")));
 
         destinationList.add(
                 new Destination(
                         "Jamiaca",
-                        new Flight(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "078")));
+                        new Flight(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "078", "Jamaica Airline")));
 
         destinationList.add(
                 new Destination(
                         "Canada",
-                        new Flight(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "078")));
+                        new Flight(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "078", "Canada Air")));
 
         // Destination d1 = destinationList.get(0);
         // int d1n = d1.getFlight().getAvailability().get("Monday");

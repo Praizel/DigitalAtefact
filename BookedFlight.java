@@ -1,10 +1,12 @@
 public class BookedFlight {
     private String country;
     private String day;
+    private String airline;
     
-    public BookedFlight(String country, String day) {
+    public BookedFlight(String country, String day, String airline) {
         this.country = country;
         this.day = day;
+        this.airline = airline;
     }
 
     public String getCountry() {
@@ -21,5 +23,12 @@ public class BookedFlight {
 
     public void setDay(String day) {
         this.day = day;
+    }
+    public String getAirline(){
+        return airline;
+    }
+
+    public void setAirline(String airline){
+        this.airline = airline;
     }
 }
