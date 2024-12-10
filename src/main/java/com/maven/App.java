@@ -1,3 +1,5 @@
+package com.maven;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -5,8 +7,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-//Class declaration
-public class Main {
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
 
     // Main class used for all other classes
 
@@ -36,9 +42,7 @@ public class Main {
             System.out.println(d);
             System.out.println("What day do you want to Travel: ");
             String day = scanner.nextLine().trim().toLowerCase();
-    
-            Flight flight = d.getFlight();
-            Map<String, Integer> availability = flight.getAvailability();
+            Map<String, Integer> availability =  d.getAvailability();
             Integer seats = availability.get(day);
             if(seats != null){
                 if(seats > 0){
@@ -48,9 +52,10 @@ public class Main {
                     System.out.println("Do you want to go ahead and book seats Yes/No ");
                     String answer = scanner.nextLine().trim().toLowerCase();
                     if(answer.equals("yes")){
-                        BookedFlight f = new BookedFlight(country, day, flight.getAirline());
+                        BookedFlight f = new BookedFlight(country, d.getAirline(), day);
                         user.addBookedFlight(f);
                         availability.put(day, seats-1);
+                        System.out.println("Flight now Reserved");
                     }
                 }
                 else{
@@ -77,7 +82,7 @@ public class Main {
             BookedFlight bookedflight = bookedFlights.get(i);
             String country = bookedflight.getCountry();
             String day = bookedflight.getDay();
-            System.out.println("Booked " + "country: " + country +  "," + " Day: " + day + "," +  " Airline: " + bookedflight.getAirline());
+            System.out.println("Booked " + "country: " + country +  "," + " Day: " + day + "," +  " " + "Airline: " + bookedflight.getAirline());
 
         }
 
@@ -178,33 +183,19 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        destinationList = new ArrayList<>();
+        destinationList = new ArrayList<Destination>();
         destinationList.add(
-                new Destination(
-                        "America",
-                        new Flight(new HashMap<>(Map.of("monday", 127, "wednesday", 150)), "078", "British Airline")));
+                new Destination(new HashMap<>(Map.of("monday", 127, "wednesday", 150)), "USA", "078", "British Airline"));
 
         destinationList.add(
-                new Destination(
-                        "France",
-                        new Flight(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "078", "France Air")));
-
+                new Destination(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "France", "078", "France Air"));                    
+                            
         destinationList.add(
-                new Destination(
-                        "Jamiaca",
-                        new Flight(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "078", "Jamaica Airline")));
-
+                new Destination(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "Jamaica", "078", "Jamaica Airline"));   
         destinationList.add(
-                new Destination(
-                        "Canada",
-                        new Flight(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "078", "Canada Air")));
+                new Destination(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "Canada", "078", "Canada Air"));                         
 
-        // Destination d1 = destinationList.get(0);
-        // int d1n = d1.getFlight().getAvailability().get("Monday");
-        // d1.getFlight().setContact("123");
-        // Destination d2 = destinationList.get(1);
-        // d2.setCountry("Spain");
-        // int var = d2.getFlight().getAvailability().get("Tuesday");
+    
 
         System.out.println("WELCOME TO THRIZ AIRLINE BOOKING");
         boolean programState = true;
