@@ -9,7 +9,8 @@ import java.util.Scanner;
 
 /**
  * The class AFlightBookingApp is the main class for this Digital
- * Artefact system booking, it handles user sign-in, sign-up, flight reservation,
+ * Artefact system booking, it handles user sign-in, sign-up, flight
+ * reservation,
  * and checking reservations.
  */
 public class AFlightBookingApp {
@@ -20,7 +21,27 @@ public class AFlightBookingApp {
     private static final Scanner scanner = new Scanner(System.in);
 
     // The list of predefined destinations which our system allows
-    static List<Destination> destinationList;
+    private static List<Destination> destinationList;
+    static 
+    {
+        destinationList = new ArrayList<Destination>();
+        destinationList.add(
+                new Destination(new HashMap<>(Map.of("monday", 127, "wednesday", 150)), "USA", "078",
+                        "British Airline"));
+
+        destinationList.add(
+                new Destination(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "France", "078",
+                        "France Air"));
+
+        destinationList.add(
+                new Destination(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "Jamaica", "078",
+                        "Jamaica Airline"));
+
+        destinationList.add(
+                new Destination(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "Canada", "078",
+                        "Canada Air"));
+
+    }
 
     /**
      * Method allows the logged in user to reserve a flight and select
@@ -40,7 +61,6 @@ public class AFlightBookingApp {
         Destination d = findDestinationByCountry(country);
         // If the Destination is not found
         if (d == null) {
-
             System.out.println("Destination does not exist ");
         }
 
@@ -52,7 +72,8 @@ public class AFlightBookingApp {
             // Scanner allows input of the day and will remove any whitespace
             String day = scanner.nextLine().trim().toLowerCase();
 
-            // Map will check the availability of the selected day and the number of seats available
+            // Map will check the availability of the selected day and the number of seats
+            // available
             Map<String, Integer> availability = d.getAvailability();
             Integer seats = availability.get(day);
             // Checks there are available seats and prints out the Statement in the String
@@ -87,7 +108,7 @@ public class AFlightBookingApp {
     /**
      * Method prints the booked flights made by the user
      * 
-     * @param user the user whose booked flight will be checked
+     * @param user the user whose booked flight will be shown
      * 
      */
     public static void checkReservation(User user) 
@@ -113,14 +134,13 @@ public class AFlightBookingApp {
     {
         System.out.println("Option 1 - Sign In");
         scanner.nextLine(); // There was a bug with scanner and we had to consume the next line to solve the
-                            // bug
         System.out.print("Enter Email: ");
         String email = scanner.nextLine();
         System.out.print("Enter Password: ");
         String password = scanner.nextLine();
 
         User loggedInUser = null;
-        //Check if there is a user with given email and password
+        // Check if there is a user with given email and password
         for (int i = 0; i < users.size(); i++) {
             User user = users.get(i);
             boolean isEmail = user.getEmail().equals(email);
@@ -192,15 +212,14 @@ public class AFlightBookingApp {
     /**
      * Prints the list of available destination
      */
-    public static void printDestinations() 
-    {
+    public static void printDestinations() {
         for (int i = 0; i < destinationList.size(); i++) {
             System.out.println(destinationList.get(i));
         }
     }
 
     /**
-     *Finds a destination by its country.
+     * Finds a destination by its country.
      * 
      * @param country the country to search for
      * @return the destination if found, otherwise null
@@ -221,26 +240,9 @@ public class AFlightBookingApp {
         return null;
     }
 
-    // The main method serve as the entry point to run the FlightBooking program
+    // The main method serve as the entry point to run the AFlightBookingApp program
     public static void main(String[] args) 
     {
-        destinationList = new ArrayList<Destination>();
-        destinationList.add(
-                new Destination(new HashMap<>(Map.of("monday", 127, "wednesday", 150)), "USA", "078",
-                        "British Airline"));
-
-        destinationList.add(
-                new Destination(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "France", "078",
-                        "France Air"));
-
-        destinationList.add(
-                new Destination(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "Jamaica", "078",
-                        "Jamaica Airline"));
-
-        destinationList.add(
-                new Destination(new HashMap<>(Map.of("monday", 127, "tuesday", 150, "thursday", 300)), "Canada", "078",
-                        "Canada Air"));
-
         System.out.println("WELCOME TO THRIZ AIRLINE BOOKING");
         boolean programState = true;
         while (programState) {

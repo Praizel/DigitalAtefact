@@ -15,6 +15,7 @@ public class User {
     private String passportNumber;
     private String countryOfOrigin;
     private LocalDate dateOfBirth;
+    
     private List<BookedFlight> bookedFlights;
    
     /**
@@ -26,7 +27,6 @@ public class User {
      * @param passportNumber user's passportNumber
      * @param countryOfOrigin user's countryOfOrigin
      * @param dateOfBirth user's date of birth
-     * @param bookedFlight contain the list of booked flights
      */
     public User(String fullName, String email, String password, String passportNumber, String coutryOfOrigin,
             LocalDate dateOfBirth) 
@@ -39,7 +39,6 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.bookedFlights = new ArrayList<>();
     }
-    
 
     /**
      * Adds a booked flight to the list of booked flights
@@ -121,6 +120,60 @@ public class User {
     public String getPasword() 
     {
         return password;
+    }
+
+    /**
+     * Sets the passportNumber
+     * @param passportNumber is the passportNumber to be set
+     */
+    public void setPassportNumber(String passportNumber) 
+    {
+        this.passportNumber = passportNumber;
+    }
+
+    /**
+     * Returns passportNumber
+     * @return the passportNumber as a String
+     */
+    public String getPassportNumber() 
+    {
+        return passportNumber;
+    }
+
+    /**
+     * Sets the countryOfOrigin
+     * @param countryOfOrigin is the countryOfOrigin to be set
+     */
+    public void setCountryOfOrigin(String countryOfOrigin) 
+    {
+        this.countryOfOrigin = countryOfOrigin;
+    }
+
+     /**
+     * Returns countryOfOrigin
+     * @return the countryOfOrigin as a String
+     */
+    public String getCountryOfOrigin() 
+    {
+        return countryOfOrigin;
+    }
+
+    /**
+     * Sets the dateOfBirth
+     * @param dateOfBirth is the dateOfBirth to be set
+     */
+    public void setDateOfBirth(LocalDate dateOfBirth) 
+    {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+     /**
+     * Returns dateOfBirth
+     * @return the dateOfBirth as a String
+     */
+    public LocalDate getDateOfBirth() 
+    {
+        return dateOfBirth;
     }
 
 }
